@@ -18,7 +18,6 @@ const Navbar = () => {
             <li>
               <a className="text-nowrap">Cat Food</a>
             </li>
-            
           </ul>
         </details>
       </li>
@@ -58,7 +57,7 @@ const Navbar = () => {
         <Link to={"/"} className=" text-xl text-gray-800 flex items-center">
           <img width={50} src={logo} alt="" />
           <div>
-            <h2 className="font-bold">Lutino Park</h2>
+            <p className="font-bold text-orange-400">Lutino Park</p>
             <p className="text-lg font-bold ">Pet Shop</p>
           </div>
         </Link>

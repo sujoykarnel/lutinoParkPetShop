@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const CustomBuildSwiper = () => {
+const Banner = () => {
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -48,4 +48,4 @@ const CustomBuildSwiper = () => {
   );
 };
 
-export default CustomBuildSwiper;
+export default Banner;
