@@ -6,23 +6,30 @@ const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <a>Home</a>
+        <Link>Home</Link>
+      </li>
+      <li>
+        <Link>About</Link>
       </li>
       <li>
         <details>
           <summary>Shop</summary>
           <ul className="p-2">
             <li>
-              <a className="text-nowrap">Brid Food</a>
+              <Link className="text-nowrap">Brid Food</Link>
             </li>
             <li>
-              <a className="text-nowrap">Cat Food</a>
+              <Link className="text-nowrap">Cat Food</Link>
             </li>
           </ul>
         </details>
       </li>
       <li>
-        <a>All Products</a>
+        <Link>Products</Link>
+      </li>
+
+      <li>
+        <Link>Contact</Link>
       </li>
     </>
   );
@@ -125,13 +132,33 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
+              </li>
+              <li>
+                <details>
+                  <summary>Admin Pannel</summary>
+                  <ul className="p-2">
+                    <li>
+                      <Link className="text-nowrap">Dashboard</Link>
+                    </li>
+                    <li>
+                      <Link className="text-nowrap">Add Product</Link>
+                    </li>
+                    <li>
+                      <Link className="text-nowrap">Manage Product</Link>
+                    </li>
+                    <li>
+                      <Link className="text-nowrap">Order</Link>
+                      <Link className="text-nowrap">User</Link>
+                    </li>
+                  </ul>
+                </details>
               </li>
               <li>
                 <a>Logout</a>
