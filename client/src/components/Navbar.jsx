@@ -34,7 +34,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-blue-100/70 shadow-sm fixed z-10 max-w-7xl">
+    <div className="navbar bg-blue-100/70 shadow-sm sticky z-10 top-0 max-w-7xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -145,10 +145,19 @@ const Navbar = () => {
                   <summary>Admin Pannel</summary>
                   <ul className="p-2">
                     <li>
-                      <Link className="text-nowrap">Dashboard</Link>
+                      <Link to={"/admin"} className="text-nowrap">
+                        Dashboard
+                      </Link>
                     </li>
                     <li>
-                      <Link className="text-nowrap">Add Product</Link>
+                      <Link to={"/admin/addMaterial"} className="text-nowrap">
+                        Add Mateial
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/admin/addProduct"} className="text-nowrap">
+                        Add Product
+                      </Link>
                     </li>
                     <li>
                       <Link className="text-nowrap">Manage Product</Link>

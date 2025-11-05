@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Admin/Dashboard";
 import AddProduct from "../pages/Admin/AddProduct";
 import Admin from "../pages/Admin/Admin";
+import AddMaterial from "../pages/Admin/Material/AddMaterial";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <Dashboard></Dashboard>,
+          },
+          {
+            path: "addMaterial",
+            element: <AddMaterial></AddMaterial>
           },
           {
             path: "addProduct",
