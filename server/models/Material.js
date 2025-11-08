@@ -10,6 +10,10 @@ const materialSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { collection: "materials", timestamps: true }
 );
@@ -20,4 +24,4 @@ const Material = mongoose.model("Material", materialSchema);
 
 Material.syncIndexes();
 
-module.exports = Material;
+export default Material;

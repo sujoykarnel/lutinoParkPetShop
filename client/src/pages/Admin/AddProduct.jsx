@@ -2,7 +2,7 @@ import React from "react";
 
 const AddProduct = () => {
   return (
-    <fieldset className="grid gap-4 max-w-md mx-auto m-4 p-4 border rounded-2xl">
+    <fieldset className="grid gap-4 max-w-md mx-auto m-4 p-4 border-2 rounded-2xl">
       <legend className="fieldset-legend">Add Product</legend>
       <label className="floating-label">
         <input
