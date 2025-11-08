@@ -5,7 +5,8 @@ import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Admin/Dashboard";
 import AddProduct from "../pages/Admin/AddProduct";
 import Admin from "../pages/Admin/Admin";
-import AddMaterial from "../pages/Admin/Material/AddMaterial";
+import AddMaterial from "../pages/Admin/AddMaterial";
+import AddUom from "../pages/Admin/AddUom";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,15 @@ const router = createBrowserRouter([
           },
           {
             path: "addMaterial",
-            element: <AddMaterial></AddMaterial>
+            element: <AddMaterial></AddMaterial>,
           },
           {
             path: "addProduct",
             element: <AddProduct></AddProduct>,
+          },
+          {
+            path: "addUom",
+            element: <AddUom></AddUom>,
           },
         ],
       },

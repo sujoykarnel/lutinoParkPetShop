@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 // Internal Modules
 import materialRoutes from "./routes/materialRoutes.js";
 import uomRoutes from "./routes/uomRoutes.js";
+import originRoutes from "./routes/originRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/uoms", uomRoutes);
 app.use("/api/materials", materialRoutes);
+app.use("/api/origins", originRoutes);
 
 // Start server
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

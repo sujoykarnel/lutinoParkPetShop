@@ -151,16 +151,18 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link to={"/admin/addMaterial"} className="text-nowrap">
-                        Add Mateial
+                        Mateial
                       </Link>
                     </li>
                     <li>
                       <Link to={"/admin/addProduct"} className="text-nowrap">
-                        Add Product
+                        Product
                       </Link>
                     </li>
                     <li>
-                      <Link className="text-nowrap">Manage Product</Link>
+                      <Link to={"/admin/addUom"} className="text-nowrap">
+                        UOM
+                      </Link>
                     </li>
                     <li>
                       <Link className="text-nowrap">Order</Link>
