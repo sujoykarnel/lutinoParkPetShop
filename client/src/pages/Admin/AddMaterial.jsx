@@ -23,6 +23,7 @@ const AddMaterial = () => {
             type="text"
             name="name"
             placeholder="Name"
+            required
             className="input input-md w-full"
           />
           <span>Name</span>
@@ -30,6 +31,7 @@ const AddMaterial = () => {
         <select
           defaultValue="Pick a Origin"
           name="originId"
+          required
           className="select w-full"
         >
           <option disabled={true}>Pick a Origin</option>
@@ -42,6 +44,7 @@ const AddMaterial = () => {
         <select
           defaultValue="Pick a UOM"
           name="primaryUomId"
+          required
           className="select w-full"
         >
           <option disabled={true}>Pick a UOM</option>
@@ -51,8 +54,6 @@ const AddMaterial = () => {
             </option>
           ))}
         </select>
-
-        <input type="file" name="image" className="file-input  w-full" />
 
         <div className="grid justify-items-center">
           <button className="btn w-6/12">Save</button>

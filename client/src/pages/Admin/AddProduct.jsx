@@ -25,14 +25,7 @@ const AddProduct = () => {
         ></textarea>
         <span>Discription</span>
       </label>
-      <label className="floating-label">
-        <input
-          type="file"
-          placeholder="Upload Image"
-          className="file-input  w-full"
-        />
-        <span>Upload Image</span>
-      </label>
+      <input type="file" name="image" className="file-input  w-full" />
       <div className="grid justify-items-center">
         <button className="btn w-6/12">Save</button>
       </div>

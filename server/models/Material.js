@@ -6,8 +6,14 @@ const materialSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    primaryUom: {
-      type: String,
+    originId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Origin",
+      required: true,
+    },
+    primaryUomId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Uom",
       required: true,
     },
     isActive: {
