@@ -7,6 +7,7 @@ import AddProduct from "../pages/Admin/AddProduct";
 import Admin from "../pages/Admin/Admin";
 import AddMaterial from "../pages/Admin/AddMaterial";
 import AddUom from "../pages/Admin/AddUom";
+import SignIn from "../pages/SignIn/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/signIn",
+        element: <SignIn></SignIn>,
       },
       {
         path: "admin",

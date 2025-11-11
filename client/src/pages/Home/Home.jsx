@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="">
       <Banner></Banner>
-      <div className="px-4">
+      <div>
         <SectionTitle title={"Top Sale Products"}></SectionTitle>
         <TopSaleProducts></TopSaleProducts>
         <div className="grid lg:grid-cols-2 text-white text-4xl font-bold italic bg-neutral-600 mt-4">

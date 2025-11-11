@@ -1,8 +1,19 @@
 import React from "react";
 import { Link } from "react-router";
 import logo from "../assets/logo.png";
+import useAuth from "../hooks/useAuth";
+import { IoMdLogIn } from "react-icons/io";
 
 const Navbar = () => {
+  const { user, signOutUser } = useAuth();
+
+  console.log(user);
+
+  const handleLogOut = () => {
+    console.log("clicked");
+    signOutUser();
+  };
+
   const navOptions = (
     <>
       <li>
@@ -73,7 +84,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <div className="flex-none">
+        <div className="flex justify-center items-center gap-4">
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -114,68 +125,79 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+          {user?.email ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
               </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <Link className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <details>
+                    <summary>Admin Pannel</summary>
+                    <ul className="p-2">
+                      <li>
+                        <Link to={"/admin"} className="text-nowrap">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={"/admin/addMaterial"} className="text-nowrap">
+                          Mateial
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={"/admin/addProduct"} className="text-nowrap">
+                          Product
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={"/admin/addUom"} className="text-nowrap">
+                          UOM
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="text-nowrap">Order</Link>
+                        <Link className="text-nowrap">User</Link>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li onClick={handleLogOut}>
+                  <a>Logout</a>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <Link className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <details>
-                  <summary>Admin Pannel</summary>
-                  <ul className="p-2">
-                    <li>
-                      <Link to={"/admin"} className="text-nowrap">
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={"/admin/addMaterial"} className="text-nowrap">
-                        Mateial
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={"/admin/addProduct"} className="text-nowrap">
-                        Product
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={"/admin/addUom"} className="text-nowrap">
-                        UOM
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="text-nowrap">Order</Link>
-                      <Link className="text-nowrap">User</Link>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+          ) : (
+            <Link to={"/signIn"}>
+              <button
+                className="btn btn-circle btn-ghost tooltip tooltip-bottom"
+                data-tip="Sign In"
+              >
+                <IoMdLogIn className="text-2xl" />
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

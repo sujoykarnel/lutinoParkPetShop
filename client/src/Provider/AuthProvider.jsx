@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -9,8 +9,9 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import AuthContext from "./AuthContext";
 
-export const AuthContext = new createContext(null);
+
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
