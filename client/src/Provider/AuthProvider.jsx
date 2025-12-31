@@ -11,8 +11,6 @@ import {
 import app from "../firebase/firebase.config";
 import AuthContext from "./AuthContext";
 
-
-
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 

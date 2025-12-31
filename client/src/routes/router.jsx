@@ -8,6 +8,7 @@ import Admin from "../pages/Admin/Admin";
 import AddMaterial from "../pages/Admin/AddMaterial";
 import AddUom from "../pages/Admin/AddUom";
 import SignIn from "../pages/SignIn/SignIn";
+import SignUp from "../pages/SignUp/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/signIn",
         element: <SignIn></SignIn>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>,
       },
       {
         path: "admin",
