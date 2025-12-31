@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useAuth from "./useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "../api/api";
 
 const useUom = () => {
-  const [uoms, setUoms] = useState([]);
+  const { user } = useAuth();
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/uoms")
-      .then((res) => res.json())
-      .then((data) => setUoms(data))
-      .catch((err) => console.log(err));
-  }, []);
+  const {
+    data = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["uoms", user?.uid || null],
+    queryFn: async () => {
+      const result = await api.get(`/uoms`, {
+        params: {},
+      });
+      return result.data;
+    },
+  });
 
-  return uoms;
+  return {
+    uoms: data,
+    refetch,
+    isLoading,
+  };
 };
 
 export default useUom;

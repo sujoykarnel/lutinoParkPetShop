@@ -2,7 +2,7 @@ import React from "react";
 import useAuth from "./useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../api/api";
-const useOrigin = () => {
+const useMaterial = () => {
   const { user } = useAuth();
 
   const {
@@ -12,7 +12,7 @@ const useOrigin = () => {
   } = useQuery({
     queryKey: ["origins", user?.uid || null],
     queryFn: async () => {
-      const result = await api.get(`/origins`, {
+      const result = await api.get(`/materials`, {
         params: {},
       });
       return result.data;
@@ -20,10 +20,11 @@ const useOrigin = () => {
   });
 
   return {
-    origins: data,
+    materials: data?.data,
+    totalCount: data?.totalCount,
     refetch,
     isLoading,
   };
 };
 
-export default useOrigin;
+export default useMaterial;

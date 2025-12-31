@@ -5,10 +5,12 @@ import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Admin/Dashboard";
 import AddProduct from "../pages/Admin/AddProduct";
 import Admin from "../pages/Admin/Admin";
-import AddMaterial from "../pages/Admin/AddMaterial";
+import AddMaterial from "../pages/Admin/Material/AddMaterial";
 import AddUom from "../pages/Admin/AddUom";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import MaterialLayout from "../pages/Admin/Material/MaterialLayout";
+import Materials from "../pages/Admin/Material/Materials";
 
 const router = createBrowserRouter([
   {
@@ -36,8 +38,18 @@ const router = createBrowserRouter([
             element: <Dashboard></Dashboard>,
           },
           {
-            path: "addMaterial",
-            element: <AddMaterial></AddMaterial>,
+            path: "materials",
+            element: <MaterialLayout></MaterialLayout>,
+            children: [
+              {
+                path: "",
+                element: <Materials></Materials>,
+              },
+              {
+                path: "addMaterial",
+                element: <AddMaterial></AddMaterial>,
+              },
+            ],
           },
           {
             path: "addProduct",

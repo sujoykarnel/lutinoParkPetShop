@@ -2,12 +2,19 @@ import Material from "../models/Material.js";
 
 // get material
 export const getMaterials = (req, res) => {
-  Material.find({})
+  const query = {};
+  Material.find(query)
     .populate()
     .skip()
     .limit()
     .then((data) => {
-      res.status(200).json(data);
+      Material.countDocuments(query)
+        .then((count) => {
+          res.status(200).json({ data, totalCount: count });
+        })
+        .catch((countErr) => {
+          res.status(500).json({ error: countErr });
+        });
     })
     .catch((err) => {
       res.status(500).json({ err, message: "Item not found." });

@@ -162,7 +162,7 @@ const Navbar = () => {
                         </Link>
                       </li>
                       <li>
-                        <Link to={"/admin/addMaterial"} className="text-nowrap">
+                        <Link to={"/admin/materials"} className="text-nowrap">
                           Mateial
                         </Link>
                       </li>

@@ -1,22 +1,25 @@
-import React from "react";
-import useUom from "../../hooks/useUom";
-import useOrigin from "../../hooks/useOrigin";
+import React, { useState } from "react";
+import useUom from "../../../hooks/useUom";
+import useOrigin from "../../../hooks/useOrigin";
 
 const AddMaterial = () => {
-  const uoms = useUom();
-  const origins = useOrigin();
+  const { uoms } = useUom();
+  const { origins } = useOrigin();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   console.log(uoms);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    setIsSubmitting(true);
     console.log(data);
   };
 
   return (
     <form onSubmit={handleFormSubmit} className="max-w-md mx-auto">
-      <fieldset className="grid gap-4 m-4 p-4 border-2 rounded-2xl">
+      <fieldset className="grid gap-4 m-4 p-4 border border-gray-200 rounded-2xl shadow-xl shadow-gray-400">
         <legend className="fieldset-legend">Add Material</legend>
         <label className="floating-label">
           <input
@@ -56,7 +59,9 @@ const AddMaterial = () => {
         </select>
 
         <div className="grid justify-items-center">
-          <button className="btn w-6/12">Save</button>
+          <button disabled={isSubmitting} className="btn w-6/12">
+            Save
+          </button>
         </div>
       </fieldset>
     </form>
