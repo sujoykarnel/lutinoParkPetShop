@@ -5,10 +5,12 @@ import useMaterial from "../../../hooks/useMaterial";
 import _ from "lodash";
 import { api } from "../../../api/api";
 import Swal from "sweetalert2";
-import { FaEye } from "react-icons/fa";
+import { FaEdit, FaEye } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import Loading from "../../../components/Loading";
 
 const Materials = () => {
-  const { materials, refetch } = useMaterial();
+  const { materials, refetch, isLoading } = useMaterial();
   console.log(materials);
 
   // handle status toggle
@@ -55,6 +57,52 @@ const Materials = () => {
     });
   };
 
+
+  // handle delete items
+   const hanleDleteItem = (id) => {
+     Swal.fire({
+       title: "Are you sure?",
+       text: "You won't be able to revert this!",
+       icon: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#3085d6",
+       cancelButtonColor: "#d33",
+       confirmButtonText: "Yes, delete it!",
+     }).then((result) => {
+       if (result.isConfirmed) {
+         api
+           .delete(`/materials/${id}`)
+           .then((res) => {
+             if (res.data) {
+               refetch();
+               Swal.fire({
+                 title: "Deleted!",
+                 text: "Your item has been deleted.",
+                 icon: "success",
+               });
+             } else {
+               Swal.fire({
+                 title: "Something went wrong!",
+                 icon: "error",
+               });
+             }
+           })
+           .catch((err) => {
+             if (err) {
+               Swal.fire({
+                 title: "Something went wrong!",
+                 icon: "error",
+               });
+             }
+           });
+       }
+     });
+   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div>
       <SectionTitle title={"Materials"} />
@@ -71,6 +119,7 @@ const Materials = () => {
               <tr className="bg-red-200">
                 <th>SL</th>
                 <th>Item Name</th>
+                <th>Origin</th>
                 <th>Primary UoM</th>
                 <th className="text-center">Status</th>
                 <th className="text-center">Action</th>
@@ -81,7 +130,8 @@ const Materials = () => {
                 <tr key={row._id} className="hover:bg-red-100 text-nowrap">
                   <td>{index + 1}</td>
                   <td>{row?.name}</td>
-                  <td>{row?.primaryUom}</td>
+                  <td>{row?.originId?.name}</td>
+                  <td>{row?.primaryUomId?.name}</td>
                   <td className="text-center">
                     <input
                       type="checkbox"
@@ -90,6 +140,21 @@ const Materials = () => {
                       className="toggle border-red-600 bg-red-500 checked:border-indigo-500 checked:bg-indigo-400 checked:text-indigo-800"
                     />
                   </td>
+                  <th>
+                    <span className="flex gap-2 justify-center">
+                      <Link to={`update/${row._id}`}>
+                        <button className="btn">
+                          <FaEdit className="text-2xl" />
+                        </button>
+                      </Link>
+                      <button
+                        onClick={() => hanleDleteItem(row._id)}
+                        className="btn"
+                      >
+                        <MdDelete className="text-2xl" />
+                      </button>
+                    </span>
+                  </th>
                 </tr>
               ))}
             </tbody>

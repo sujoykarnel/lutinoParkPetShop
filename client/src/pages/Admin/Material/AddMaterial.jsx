@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import useUom from "../../../hooks/useUom";
 import useOrigin from "../../../hooks/useOrigin";
+import Loading from "../../../components/Loading";
+import Swal from "sweetalert2";
+import { api } from "../../../api/api";
+import { useNavigate } from "react-router";
 
 const AddMaterial = () => {
-  const { uoms } = useUom();
-  const { origins } = useOrigin();
+  const { uoms, isLoading: uomLoading } = useUom();
+  const { origins, isLoading: originLoading } = useOrigin();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log(uoms);
+  const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +19,45 @@ const AddMaterial = () => {
     const data = Object.fromEntries(formData.entries());
     setIsSubmitting(true);
     console.log(data);
+
+    api
+      .post("/materials", data)
+      .then((res) => {
+        if (res.data) {
+          e.target.reset();
+          Swal.fire({
+            icon: "success",
+            title: "Your item has been added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/admin/materials");
+        } else {
+          Swal.fire({
+            title: "Something went worng!",
+            icon: "error",
+          });
+        }
+      })
+      .catch((err) => {
+        if (err?.response?.data?.err?.code === 11000) {
+          Swal.fire({
+            title: "This item already existed!",
+            icon: "error",
+          });
+        } else {
+          Swal.fire({
+            title: "Something went worng!",
+            icon: "error",
+          });
+        }
+      })
+      .finally(() => setIsSubmitting(false));
   };
+
+  if (uomLoading || originLoading) {
+    return <Loading />;
+  }
 
   return (
     <form onSubmit={handleFormSubmit} className="max-w-md mx-auto">

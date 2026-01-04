@@ -11,6 +11,8 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import MaterialLayout from "../pages/Admin/Material/MaterialLayout";
 import Materials from "../pages/Admin/Material/Materials";
+import UpdateMaterials from "../pages/Admin/Material/UpdateMaterials";
+import { api } from "../api/api";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,15 @@ const router = createBrowserRouter([
               {
                 path: "",
                 element: <Materials></Materials>,
+              },
+              {
+                path: "update/:id",
+                element: <UpdateMaterials></UpdateMaterials>,
+                loader: ({ params }) => {
+                  return api
+                    .get(`/materials/${params.id}`)
+                    .then((res) => res.data);
+                },
               },
               {
                 path: "addMaterial",

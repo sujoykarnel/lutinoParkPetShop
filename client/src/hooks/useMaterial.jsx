@@ -10,7 +10,7 @@ const useMaterial = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["origins", user?.uid || null],
+    queryKey: ["materials", user?.uid || null],
     queryFn: async () => {
       const result = await api.get(`/materials`, {
         params: {},
